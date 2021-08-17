@@ -240,6 +240,7 @@
 
 
 
+// ------------------------------------------------------- //
 // so, why do we learn promises? the main reason is reading data from a remote server. and now, we will start to use one of the common functions, fetch:
 
 // The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. It also provides a global fetch() method that provides an easy, logical way to fetch resources asynchronously across the network.
@@ -257,6 +258,7 @@
 
 
 
+// ------------------------------------------------------- //
 // // this is a perfect example for understanding the asynchronous calls. let's fetch the other sets and watch our console.
 // fetch('https://jsonplaceholder.typicode.com/posts')
 // .then(response => response.json())
@@ -292,19 +294,76 @@
 // .then(response => response.json())
 // .then(json => console.log(json))
 
+// as you see, at each turn the output differs. this is the result of async calls.
 
+
+
+// ------------------------------------------------------- //
+// now, let's try stg imp. we have covered this stiatuan a few times before. here is a few lines of code.
 
 // let userDB;
 
 // let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users/3')
 //   .then(response => response.json())
 //   .then(json => {
-//     // console.log(json);
-//     userDB = json;
-//     console.log(userDB);
+//     console.log(json);
+//     // userDB = json;
+//     // console.log(userDB);
 //   })
 
-//   console.log(userDB);
+// //   console.log(userDB);
+
+
+
+
+// ------------------------------------------------------- //
+// now, let's inspect fetch function more:
+// first let's read one of the users.
+
+// let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users/3')
+//   .then( (response) => {
+//     console.log("!!!: ", response.status);
+//     return response.json();
+//   })
+//   .then((json) => console.log("user: ", json))
+
+
+
+
+
+// ------------------------------------------------------- //
+// let's change the address and see the result:
+
+// let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users!!!/3')
+// .then( (response) => {
+//   console.log("!!!: ", response.status);
+//   return response.json();
+// })
+// .then((json) => console.log("user: ", json))
+
+
+
+
+// for details about the response codes you can check the following link.
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+
+
+// ------------------------------------------------------- //
+// as you see, we got an error. how can we create our error messages?
+// if fetch access data it returns 200 message as success. we can use this message for creating our error messages.
+
+let userFromRemote = fetch('https://jsonplaceholder.typicode.com/usersq/3')
+  .then((response) => {
+    // console.log("!!!: ", response.status);
+
+    if (response.status == 200) return response.json();
+    else throw Error(response.status)
+  })
+  .then((json) => console.log("user: ", json))
+  .catch(err => console.log("error: ", err));
+
+
 
 
 
