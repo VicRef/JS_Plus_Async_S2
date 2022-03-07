@@ -7,6 +7,18 @@
 
 // we can use arrow function or a regular function as a callback for creating...
 
+// here with an arrow function:
+let myFirstPromise1 = new Promise((resolve, reject) => {
+
+})
+
+// here with an anonumus function:
+let myFirstPromise2 = new Promise(function (resolve, reject) {
+
+})
+
+
+// NOW, LET'S CHANGE OUR SCOPE A LITTLE BIT AND GIVE ANOTHER EXAMPLE.
 // let loadDataFromDB = new Promise((resolve, reject) => {
 let loadDataFromDB = new Promise(function (resolve, reject) {
 
@@ -303,7 +315,7 @@ fetch('https://jsonplaceholder.typicode.com/albums/99')
 
 // ------------------------------------------------------- //
 // now, let's try stg imp. we have covered this situation a few times before. here is a few lines of code.
-
+// burada doğrudan html üzerinde işlem yap...
 let userDB;
 
 let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users/3')
@@ -339,7 +351,7 @@ let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users/3')
 
 let userFromRemote = fetch('https://jsonplaceholder.typicode.com/users!!!/3')
   .then((response) => {
-    console.log("!!!: ", response.status);
+    console.log("response.status: ", response.status);
     return response.json();
   })
   .then((json) => console.log("user: ", json))
@@ -371,7 +383,7 @@ let userFromRemote = fetch('https://jsonplaceholder.typicode.com/usersq/3')
 
 // ----------------------------- TASK ----------------------------------- //
 // read a random albume from placeholder.com and log its data on console (or on html page)
-// by matching its id, read an image from photos and log its data on console (or on html page)
+// by using its id, read an image from photos and log its data on console (or on html page)
 
 
 // const myImg = document.querySelector("img");
